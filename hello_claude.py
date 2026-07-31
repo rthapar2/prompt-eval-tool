@@ -23,8 +23,14 @@ test_questions = [
     "Name one thing a for loop is good for, in one sentence.",
 ]
 
-for question in test_questions:
+expected_keywords = ["Python", "variable", "loop"]
+
+for question, keyword in zip(test_questions, expected_keywords):
     answer = ask_claude(question)
     print(f"Q: {question}")
     print(f"A: {answer}")
+    if keyword.lower() in answer.lower():
+        print("PASS")
+    else:
+        print("FAIL")
     print()
